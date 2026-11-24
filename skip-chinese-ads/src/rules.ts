@@ -40,6 +40,10 @@ const sdk = {
   bytedance: skip("BDASplashSkipButton"),
   cjzf: skip("CJZFAdSDKInterstitialSkipView", "CJZFChannelSplashSkipButton"),
   csj: skip(
+    "BUDynamicSkipView",
+    "BUDynamicSkipWithCountdownsSkipBtnView",
+    "BUDynamicSkipWithTimeSkipBtnView",
+    "BUSkipButton",
     "CSJDynamicSkipView",
     "CSJDynamicSkipWithCountdownsSkipBtnView",
     "CSJDynamicSkipWithTimeSkipBtnView",
@@ -52,6 +56,7 @@ const sdk = {
     within: { class: /^(?:(?:YS)?CXJS|ZJJS)SkipView$/ },
   },
   dcloud: skip("DCUniAdSkipButton"),
+  dn: skip("DNSplashSkipView", "DNSplashNormalSkipView"),
   flink: skip("FLinkSkipAdButton"),
   gdt: [
     skip(
@@ -68,6 +73,11 @@ const sdk = {
     },
   ],
   jd: skip("JADNativeSkipButton"),
+  jiguang: skip(
+    "ADJgAdapterSplashSkipView",
+    "JgAdsSplashSkipView",
+    "TianmuSplashSkipView",
+  ),
   kuaishou: skip(
     "KSAdJumpView",
     "KSAdSplashCircleJumpView",
@@ -83,6 +93,17 @@ const sdk = {
       },
     },
   },
+  mintegral: skip("MTGSplashCloseView"),
+  nad: {
+    class: "UIButton",
+    identifier: "skipButton",
+    within: { class: "NADSplashVCRootView" },
+  },
+  nangua: {
+    class: "UILabel",
+    label: /^跳过/,
+    within: { class: "CQSplashSkip" },
+  },
   pangle: skip("PAGAppOpenAdSkipButton", "PAGSkipButton"),
   sdm: skip("SDMTSplashCloseView"),
   sigmob: skip("SigmobSkipView"),
@@ -93,7 +114,7 @@ const sdk = {
     "TGGDTSplashDefaultSkipView",
     "TGGDTSplashSkipView",
   ),
-  tobid: skip("WindMillSDK.SkipButton"),
+  tobid: skip("WindMillSDK.SkipButton", "WindMillSkipView"),
   ubix: skip(
     "UBiXSkipRoundView",
     "UBiXSkipTextView",
@@ -106,6 +127,7 @@ const sdk = {
 export const sdkRules: Rule[] = Object.values(sdk).flat();
 
 export const rules: Record<string, (Rule | Rule[])[]> = {
+  CtClient: [{ class: "UIButton", label: /^(?:\d+ 跳过|跳过\d+s)$/ }],
   "Letarrow.QTimes": [
     { class: "UILabel", label: "跳过", within: { class: "CJSplashView" } },
     {
@@ -126,7 +148,10 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
   "caolu.com.cn.SuperDeer": [
     { class: "SDButton", within: { class: "SDSplashView" } },
   ],
-  "cn.10086.app": [{ class: "UIButton", label: "common close" }],
+  "cn.10086.app": [
+    { label: /^\d+ 跳过$/, within: { class: "CMCCLaunchView" } },
+    { class: "UIButton", label: "common close" },
+  ],
   "cn.12306.rails12306": [
     {
       class: "UIImageView",
@@ -171,6 +196,7 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
     sdk.kuaishou,
     sdk.sigmob,
   ],
+  "com.178.nga": [sdk.csj, sdk.dn, sdk.gdt, sdk.kuaishou],
   "com.2345.KingWeather": [
     {
       class: "UILabel",
@@ -202,6 +228,12 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
   "com.antgroup.aijk.iphone": [skip("APSplashSkipButton")],
   "com.antgroup.leopard.ios": [skip("APSplashSkipButton")],
   "com.apalonapps.planesfree": [sdk.pangle],
+  "com.autonavi.amap": [
+    {
+      class: "_NMFSCExpandTouchAreaButton",
+      within: { class: "WINSplashView" },
+    },
+  ],
   "com.babytree.pregnancy": [
     skip("FLSkipAdButton"),
     sdk.adgain,
@@ -212,10 +244,23 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
   ],
   "com.baidu.app.aiinquiry": [sdk.xhLaunchAd],
   "com.baidu.homework": [sdk.csj, sdk.gdt],
+  "com.baidu.inputMethod": [
+    sdk.baidu,
+    sdk.beizi,
+    sdk.csj,
+    sdk.gdt,
+    sdk.nad,
+  ],
   "com.baidu.map": [
+    {
+      class: "UIButton",
+      label: /^跳过/,
+      within: { class: "BMADSplashView" },
+    },
     sdk.csj,
     sdk.gdt,
     sdk.kuaishou,
+    sdk.nad,
     sdk.sigmob,
     sdk.tobid,
     sdk.ubix,
@@ -301,7 +346,17 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
   ],
   "com.bytedance.LifeServiceMerchant": [sdk.bytedance],
   "com.bytedance.ee.lark": [sdk.bytedance],
-  "com.cainiao.cnwireless": [sdk.csj, sdk.gdt, sdk.ubix, sdk.meishu],
+  "com.cainiao.cnwireless": [
+    {
+      class: "UIButton",
+      label: /^跳过/,
+      within: { class: "CNGLaunchSplashView" },
+    },
+    sdk.csj,
+    sdk.gdt,
+    sdk.ubix,
+    sdk.meishu,
+  ],
   "com.cbn.hmjc": [
     skip("MHAPIAdSkipButton", "QYSplashSkipButton"),
     sdk.baidu,
@@ -346,6 +401,8 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
   ],
   "com.cmcc.zhihuiguanjia": [skip("DspSkipButton"), sdk.cxjs],
   "com.cnpc.iccard.query.app": [sdk.csj],
+  "com.coolapk.app": [sdk.csj, sdk.gdt],
+  "com.danlan.xiaolan": [sdk.baidu, sdk.csj, sdk.gdt, sdk.kuaishou],
   "com.data4sports.app": [
     skip("DPro.DPSplashSkipVU"),
     {
@@ -375,6 +432,20 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
   "com.erfagao.bizhiwallpaper": [sdk.csj, sdk.gdt, sdk.kuaishou],
   "com.eusoft.ting-en": [skip("EULaunchScreenSkipButton"), sdk.gdt],
   "com.facebook.Facebook": [skip("FBInstreamAdSkipButtonHostingView")],
+  "com.feng.New.WPForumClient": [
+    sdk.baidu,
+    sdk.cjzf,
+    sdk.csj,
+    sdk.gdt,
+    sdk.jd,
+    sdk.jiguang,
+    sdk.kuaishou,
+    sdk.mintegral,
+    sdk.nangua,
+    sdk.sigmob,
+    sdk.tobid,
+    sdk.ubix,
+  ],
   "com.fish.weather.mm": [sdk.csj, sdk.gdt],
   "com.foooooot.xingzong": [sdk.csj, sdk.gdt],
   "com.fq.music": [sdk.bytedance],
@@ -431,7 +502,7 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
     {
       class: "UILabel",
       label: /^跳过/,
-      within: { class: "HCADManager.HCLaunchCountDownView" },
+      within: { class: /^HCADManager\.HCLaunch(?:Template)?CountDownView$/ },
     },
     sdk.csj,
     sdk.gdt,
@@ -884,6 +955,22 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
     sdk.tobid,
     sdk.meishu,
   ],
+  "com.smzdm.client.ios": [
+    skip("ZDMAdxSplashSkipBtn"),
+    {
+      class: "UIButton",
+      label: /^跳过 \d+$/,
+      within: { class: "SMFullWindowAdView" },
+    },
+    {
+      class: /^(?:UIButton|UILabel)$/,
+      label: "跳过",
+      within: { class: "ROIPSplashAdView" },
+    },
+    sdk.csj,
+    sdk.gdt,
+    sdk.jiguang,
+  ],
   "com.soulapp.cn": [sdk.csj, sdk.gdt, sdk.jd],
   "com.ss.ios.auto": [skip("DCDADTopViewSkipButton"), sdk.bytedance],
   "com.ss.iphone.article.News": [skip("TTAdTopSkipButton"), sdk.bytedance],
@@ -898,6 +985,7 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
       label: /^跳过广告 \d+$/,
       within: { class: "FishAd.FishSplashAdView" },
     },
+    sdk.baidu,
     sdk.beizi,
     sdk.csj,
     sdk.gdt,
@@ -1007,6 +1095,18 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
   ],
   "com.wanhang.school": [sdk.baidu, sdk.csj, sdk.gdt, sdk.jd, sdk.kuaishou],
   "com.wdk.hmxs": [skip("FFAdSkipButton")],
+  "com.weibo.international": [
+    {
+      class: "UIButton",
+      label: /^跳过/,
+      within: { class: /^(?:CYTSplashAdSkipView|LYCustomSkipOrCloseView)$/ },
+    },
+    { label: /^跳过/, within: { class: "QuMengSplashView" } },
+    sdk.csj,
+    sdk.gdt,
+    sdk.kuaishou,
+    sdk.meishu,
+  ],
   "com.wenyu.bodian": [sdk.csj, sdk.tencent],
   "com.wepie.wespy": [sdk.xhLaunchAd],
   "com.wifi.masterkey.lite": [
@@ -1097,6 +1197,7 @@ export const rules: Record<string, (Rule | Rule[])[]> = {
     sdk.cxjs,
     sdk.meishu,
   ],
+  "com.xingin.discover": [skip("XYPHSplashAdsSkipButton")],
   "com.xs.fm": [sdk.bytedance],
   "com.xt.retouch": [
     skip("LVUniteAd.SelfRenderSplashAdSkipButton"),
