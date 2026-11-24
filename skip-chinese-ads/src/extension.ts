@@ -1,14 +1,13 @@
-import * as accessibility from "@swipt/api/accessibility";
+import type { Point, Rect, ScreenStream } from "@swipt/api";
+import type { RasterImage } from "@swipt/api/image";
+import * as accessibility from "@swipt/api/ios/accessibility";
 import type {
   AccessibilityElement,
   AccessibilitySelector,
-} from "@swipt/api/accessibility";
-import * as device from "@swipt/api/device";
-import type { Point, Rect } from "@swipt/api";
-import type { RasterImage } from "@swipt/api/image";
-import * as input from "@swipt/api/input";
-import * as screen from "@swipt/api/screen";
-import type { ScreenStream } from "@swipt/api/screen";
+} from "@swipt/api/ios/accessibility";
+import * as device from "@swipt/api/ios/device";
+import * as input from "@swipt/api/ios/input";
+import * as screen from "@swipt/api/ios/screen";
 import { defineAction, defineExtension } from "@swipt/api/swiplet";
 
 import {

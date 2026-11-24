@@ -59,8 +59,13 @@
     },
     "icon": {
       "color": "black",
-      "symbol": "waveform.path.ecg",
+      "ios": "waveform.path.ecg",
       "symbolColor": "green"
+    },
+    "platforms": {
+      "ios": {
+        "minimumVersion": 17.4
+      }
     },
     "app": "./src/App.tsx",
     "extension": "./src/extension.ts"
@@ -71,8 +76,8 @@
   },
   "devDependencies": {
     "@expo/ui": "~58.0.26",
-    "@swipt/api": "0.1.0-nightly.90",
-    "@swipt/cli": "0.1.0-nightly.90",
+    "@swipt/api": "0.1.0-nightly.110",
+    "@swipt/cli": "0.1.0-nightly.110",
     "@types/react": "~19.3.0",
     "expo-sqlite": "~58.0.15",
     "react": "19.3.0",

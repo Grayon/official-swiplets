@@ -35,7 +35,7 @@ import { AppleMaps } from "expo-maps";
 import { useEffect, useRef, useState } from "react";
 import { actions, exit } from "@swipt/api/swiplet";
 import { preferredLocalizations } from "@swipt/api/localization";
-import { searchPlaces } from "@swipt/api/maps";
+import { searchPlaces } from "@swipt/api/ios/maps";
 
 import locales from "../locales.json";
 import {

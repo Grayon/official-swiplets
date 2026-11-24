@@ -1,4 +1,4 @@
-import { applicationIcon, installedApplications } from "@swipt/api/device";
+import { applicationIcon, installedApplications } from "@swipt/api/ios/device";
 import {
   kill,
   resourceUsage,
@@ -6,7 +6,7 @@ import {
   type ProcessAttributes,
   type ResourceUsage,
   type SystemAttributes,
-} from "@swipt/api/process";
+} from "@swipt/api/ios/process";
 import { defineAction, defineExtension, type Schema } from "@swipt/api/swiplet";
 
 export type Usage = Omit<ResourceUsage, "system" | "processes"> & {

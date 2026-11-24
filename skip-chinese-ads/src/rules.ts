@@ -1,7 +1,7 @@
 import type {
   AccessibilityElement,
   AccessibilitySelector,
-} from "@swipt/api/accessibility";
+} from "@swipt/api/ios/accessibility";
 
 export type Rule = Exclude<
   AccessibilitySelector,

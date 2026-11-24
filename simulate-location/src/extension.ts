@@ -1,4 +1,7 @@
-import { simulatedLocation, type SimulatedLocation } from "@swipt/api/device";
+import {
+  simulatedLocation,
+  type SimulatedLocation,
+} from "@swipt/api/ios/device";
 import { defineAction, defineExtension, type Schema } from "@swipt/api/swiplet";
 
 const jsonSchema = {

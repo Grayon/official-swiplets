@@ -1,13 +1,13 @@
-import * as accessibility from "@swipt/api/accessibility";
+import type { Rect } from "@swipt/api";
+import * as accessibility from "@swipt/api/ios/accessibility";
 import type {
   AccessibilityElement,
   AccessibilitySelector,
   AccessibilitySnapshot,
-} from "@swipt/api/accessibility";
-import * as device from "@swipt/api/device";
-import * as input from "@swipt/api/input";
-import type { Rect } from "@swipt/api";
-import { open as openScreen } from "@swipt/api/screen";
+} from "@swipt/api/ios/accessibility";
+import * as device from "@swipt/api/ios/device";
+import * as input from "@swipt/api/ios/input";
+import { open as openScreen } from "@swipt/api/ios/screen";
 import { defineAction, defineExtension, type Schema } from "@swipt/api/swiplet";
 
 import { readAccounts, type Account } from "./storage";

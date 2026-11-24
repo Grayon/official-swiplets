@@ -72,7 +72,7 @@ import {
   type ColorValue,
 } from "react-native";
 import { preferredLocalizations } from "@swipt/api/localization";
-import type { ProcessAttributes, SystemAttributes } from "@swipt/api/process";
+import type { ProcessAttributes, SystemAttributes } from "@swipt/api/ios/process";
 import {
   Chart,
   DataGrid,
