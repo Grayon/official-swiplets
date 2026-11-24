@@ -53,12 +53,20 @@ const sdk = {
   },
   dcloud: skip("DCUniAdSkipButton"),
   flink: skip("FLinkSkipAdButton"),
-  gdt: skip(
-    "GDTSplashCustomSkipView",
-    "GDTSplashDefaultSkipView",
-    "GDTSplashSkipContentView",
-    "GDTSplashSkipView",
-  ),
+  gdt: [
+    skip(
+      "GDTSplashCustomSkipView",
+      "GDTSplashDefaultSkipView",
+      "GDTSplashSkipContentView",
+      "GDTSplashSkipView",
+    ),
+    // A splash drawn from a server template has no skip class of its own.
+    {
+      class: "UDK_GDTDLLabel",
+      label: /^跳过/,
+      within: { class: "GDTSplashDLView" },
+    },
+  ],
   jd: skip("JADNativeSkipButton"),
   kuaishou: skip(
     "KSAdJumpView",
@@ -95,7 +103,7 @@ const sdk = {
   xhLaunchAd: skip("XHLaunchAdButton"),
 };
 
-export const sdkRules: Rule[] = Object.values(sdk);
+export const sdkRules: Rule[] = Object.values(sdk).flat();
 
 export const rules: Record<string, (Rule | Rule[])[]> = {
   "Letarrow.QTimes": [
